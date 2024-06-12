@@ -4,4 +4,6 @@
     <string name="sign_in_button">Sign in</string>
     <string name="login_button">Login</string>
     <string name="register_button">Register</string>
+    <string name="goto_register_button">Go to register</string>
+    <string name="goto_login_button">Go to login</string>
 </resources>
