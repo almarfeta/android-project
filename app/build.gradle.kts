@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("androidx.navigation.safeargs")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -41,6 +42,8 @@ dependencies {
     val nav_version = "2.7.7"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
