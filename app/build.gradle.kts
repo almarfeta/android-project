@@ -44,6 +44,8 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

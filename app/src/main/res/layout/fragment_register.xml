@@ -2,6 +2,84 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/green">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintWidth_percent="0.8">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_register_forename"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="@string/input_hint_forename"
+                android:inputType="text"/>
+
+            <EditText
+                android:id="@+id/et_register_surname"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="@string/input_hint_surname"
+                android:inputType="text"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"/>
+
+        <EditText
+            android:id="@+id/et_register_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_hint_email"
+            android:inputType="textEmailAddress"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"/>
+
+        <EditText
+            android:id="@+id/et_register_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_hint_password"
+            android:inputType="textPassword"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"/>
+
+        <Button
+            android:id="@+id/register_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_button"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"/>
+
+        <Button
+            android:id="@+id/goto_login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/goto_login_button" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
