@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_project.R
 import com.example.android_project.adapters.WatchlistListAdapter
-import com.example.android_project.models.CartItemModel
 import com.example.android_project.models.CategoryModel
 import com.example.android_project.models.WatchlistModel
 
@@ -25,9 +24,6 @@ class WatchlistFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
     }
-
-
-
 
     private fun setupRecyclerView(){
         val layoutManager = LinearLayoutManager(context)
@@ -57,10 +53,50 @@ class WatchlistFragment: Fragment() {
                 name = "Movie name 5",
                 description = "Movie description 5"
             ),
+            WatchlistModel(
+                name = "Movie name 5",
+                description = "Movie description 5"
+            ),
+            WatchlistModel(
+                name = "Movie name 5",
+                description = "Movie description 5"
+            ),
+            WatchlistModel(
+                name = "Movie name 5",
+                description = "Movie description 5"
+            ),
+            WatchlistModel(
+                name = "Movie name 5",
+                description = "Movie description 5"
+            ),            WatchlistModel(
+                name = "Movie name 5",
+                description = "Movie description 5"
+            ),
+            WatchlistModel(
+                name = "Movie name 5",
+                description = "Movie description 5"
+            ),
+            WatchlistModel(
+                name = "Movie name 5",
+                description = "Movie description 5"
+            ),
+            WatchlistModel(
+                name = "Movie name 5",
+                description = "Movie description 5"
+            ),
+            WatchlistModel(
+                name = "Movie name 5",
+                description = "Movie description 5"
+            ),
+            WatchlistModel(
+                name = "Movie name 5",
+                description = "Movie description 5"
+            )
         )
-        val adapter = WatchlistListAdapter(watchlistList as List<CartItemModel>)
 
-        view?.findViewById<RecyclerView>(R.id.rv_watchlists)?.apply{
+        val adapter = WatchlistListAdapter(watchlistList)
+
+        view?.findViewById<RecyclerView>(R.id.rv_watchlist)?.apply{
             this.layoutManager = layoutManager
             this.adapter = adapter
         }
