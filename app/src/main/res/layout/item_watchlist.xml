@@ -16,9 +16,17 @@
         tools:text="Movie Name"/>
 
     <TextView
-        android:id="@+id/tv_watchlist_description"
+        android:id="@+id/tv_watchlist_year"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        tools:text="Description"/>
+        tools:text="Year"/>
+
+    <TextView
+        android:id="@+id/tv_watchlist_actors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        tools:text="Actors"/>
+
 </LinearLayout>

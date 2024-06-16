@@ -17,4 +17,6 @@
     <string name="login_successful">Login successful</string>
     <string name="register_successful">Account created</string>
     <string name="fetch_error">Failed to fetch the data</string>
+    <string name="watchlist_header">My Watchlist</string>
+    <string name="goto_movies">Add more movies</string>
 </resources>
