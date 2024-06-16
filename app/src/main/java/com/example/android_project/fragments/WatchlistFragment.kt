@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_project.R
 import com.example.android_project.adapters.WatchlistListAdapter
+import com.example.android_project.models.CartItemModel
 import com.example.android_project.models.CategoryModel
 import com.example.android_project.models.WatchlistModel
 
@@ -22,6 +23,7 @@ class WatchlistFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
     }
 
 
@@ -56,7 +58,7 @@ class WatchlistFragment: Fragment() {
                 description = "Movie description 5"
             ),
         )
-        val adapter = WatchlistListAdapter(watchlistList)
+        val adapter = WatchlistListAdapter(watchlistList as List<CartItemModel>)
 
         view?.findViewById<RecyclerView>(R.id.rv_watchlists)?.apply{
             this.layoutManager = layoutManager

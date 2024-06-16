@@ -6,12 +6,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_project.R
+import com.example.android_project.models.CartItemModel
 import com.example.android_project.models.CartItemType
 import com.example.android_project.models.CategoryModel
 import com.example.android_project.models.WatchlistModel
 
 class WatchlistListAdapter(
-    private val cartItemList: List<Any>
+    private val cartItemList: List<CartItemModel>
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount() = cartItemList.size
@@ -49,7 +50,7 @@ class WatchlistListAdapter(
         }
     }
 
-    inner class WatchlistViewHolder(val watchlistDescriptionTextView: TextView): RecyclerView.ViewHolder(view){
+    inner class WatchlistViewHolder(val view: View): RecyclerView.ViewHolder(view){
 
         val watchlistNameTextView: TextView
         val watchlistDescriptionTextView: TextView
