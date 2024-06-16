@@ -16,4 +16,5 @@
     <string name="invalid_surname">Invalid last name</string>
     <string name="login_successful">Login successful</string>
     <string name="register_successful">Account created</string>
+    <string name="fetch_error">Failed to fetch the data</string>
 </resources>
