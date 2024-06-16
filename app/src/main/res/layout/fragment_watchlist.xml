@@ -2,6 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/yellow">
+
+    <androidx.recyclerview.widget.RecyclerView
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:background="@color/yellow"
+    android:clipToPadding="false"
+    android:padding="@dimen/default_space"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintEnd_toStartOf="parent"
+    app:layout_constraintBaseline_toTopOf="parent
+"/>
+<!--    <Button-->
+<!--        android:id="@+id/goto_register_btn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/goto_register_button" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
