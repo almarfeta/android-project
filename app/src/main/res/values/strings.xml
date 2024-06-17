@@ -19,4 +19,9 @@
     <string name="fetch_error">Failed to fetch the data</string>
     <string name="watchlist_header">My Watchlist</string>
     <string name="goto_movies">Add more movies</string>
+    <string name="add_movie">Add to watchlist</string>
+    <string name="search">Search</string>
+    <string name="invalid_search">Nothing to search for</string>
+    <string name="movie_added">Movie added</string>
+    <string name="movie_added_fail">Failed to add movie</string>
 </resources>

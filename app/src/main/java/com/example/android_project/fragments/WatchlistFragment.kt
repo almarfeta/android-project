@@ -87,6 +87,9 @@ class WatchlistFragment: Fragment() {
     }
 
     private fun goToMovies() {
+        watchlistItems.clear()
+        adapter.notifyDataSetChanged()
+
         val action = WatchlistFragmentDirections.actionWatchlistFragmentToMoviesFragment()
         findNavController().navigate(action)
     }
