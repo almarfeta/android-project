@@ -4,31 +4,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.example.android_project.R
-import com.example.android_project.adapters.WatchlistListAdapter
-import com.example.android_project.models.CartItemModel
-import com.example.android_project.models.CategoryModel
-import com.example.android_project.models.WatchlistModel
-import com.example.android_project.models.api.WatchlistAPIResponse
-//import com.example.android_project.utils.extenstions.getWatchlist
-import com.example.android_project.utils.extenstions.handleWatchlistResponse
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.example.android_project.adapters.WatchlistAdapter
+import com.example.android_project.data.WatchlistRepo
+import com.example.android_project.models.WatchlistAPIRequest
+import com.example.android_project.models.WatchlistItemModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class WatchlistFragment: Fragment() {
 
-    private val watchlistItemList by lazy {
-        ArrayList<CartItemModel>()
-    }
+    private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+    private lateinit var headerTextView: TextView
+    private val watchlistItems = ArrayList<WatchlistItemModel>()
+
     private val adapter by lazy {
-        WatchlistListAdapter(watchlistItemList)
+        WatchlistAdapter(watchlistItems)
     }
 
     override fun onCreateView(
@@ -39,58 +37,63 @@ class WatchlistFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+
+        headerTextView = view.findViewById(R.id.tv_watchlist_title)
+        val goToMoviesButton = view.findViewById<Button>(R.id.add_movies_btn)
+        goToMoviesButton.setOnClickListener { goToMovies() }
+
         setupRecyclerView()
-        getWatchlist()
+        getData()
     }
 
     private fun setupRecyclerView(){
         val layoutManager = LinearLayoutManager(context)
 
-
-        view?.findViewById<RecyclerView>(R.id.rv_watchlist)?.apply{
+        view?.findViewById<RecyclerView>(R.id.rv_watchlist)?.apply {
             this.layoutManager = layoutManager
             this.adapter = this@WatchlistFragment.adapter
         }
     }
-    private fun getWatchlist(){
 
-        val queue = Volley.newRequestQueue(context)
-        val url = "https://www.fakestoreapi.com/products"
-
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            { response ->
-                handleWatchlistResponse(response)
-            },
-           {
-               "That didn't work!"
-           })
-
-        queue.add(stringRequest)
-
+    private fun getData() {
+        val userId = auth.currentUser?.uid
+        userId?.let { uid ->
+            db.collection("data").document(uid).get()
+                .addOnSuccessListener { document ->
+                    println(document.data)
+                    val data = document.toObject(WatchlistAPIRequest::class.java)
+                    data?.let { req ->
+                        updateHeader(req.forename, req.surname)
+                        updateRecyclerView(req.watchlist)
+                    }
+                }
+        }
     }
 
-    private fun handleWatchlistResponse(response: String) {
-        val type = object: TypeToken<List<WatchlistAPIResponse>>(){}.type
-        val responseJsonArray = Gson().fromJson<List<WatchlistAPIResponse>>(response, type)
+    private fun updateHeader(forename: String, surname: String) {
+        val headerText = "$forename $surname's Watchlist"
+        headerTextView.text = headerText
+    }
 
-        responseJsonArray
-            .groupBy{it.category}
-            .forEach{//it:Map.Entry<string, List<watchlistAPIResponse>>
-                val categoryModel = CategoryModel(
-                    name = it.key,
-                    description =  it.key
-                )
-                val watchlist = it.value.map{ watchlistApi ->
-                    WatchlistModel(
-                        name = watchlistApi.name,
-                        description = watchlistApi.description
-                    )
-                }
-                watchlistItemList.add(categoryModel)
-                watchlistItemList.addAll(watchlist)
-            }
-        adapter.notifyItemRangeInserted(0, watchlistItemList.size)
-//          adapter.notifyDataSetChanged()
+    private fun updateRecyclerView(watchlist: List<WatchlistItemModel>) {
+        watchlist.forEach { watchlistItem ->
+            insertWatchlistItemToDB(watchlistItem)
+            watchlistItems.add(watchlistItem)
+        }
+        adapter.notifyItemRangeInserted(0, watchlistItems.size)
+    }
+
+    private fun goToMovies() {
+        val action = WatchlistFragmentDirections.actionWatchlistFragmentToMoviesFragment()
+        findNavController().navigate(action)
+    }
+
+    private fun insertWatchlistItemToDB(watchlistItem: WatchlistItemModel) {
+        WatchlistRepo.insert(watchlistItem) {
+            println("Product successfully inserted")
+        }
     }
 }
