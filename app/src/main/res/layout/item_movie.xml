@@ -12,13 +12,27 @@
         android:id="@+id/tv_movie_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/blue"
+        android:textColor="@color/black"
         tools:text="Movie Name"/>
 
     <TextView
-        android:id="@+id/tv_movie_description"
+        android:id="@+id/tv_movie_year"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        tools:text="Description"/>
+        android:textColor="@color/white"
+        tools:text="Year"/>
+
+    <TextView
+        android:id="@+id/tv_movie_actors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        tools:text="Actors"/>
+
+    <Button
+        android:id="@+id/add_movie_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_movie" />
+
 </LinearLayout>
