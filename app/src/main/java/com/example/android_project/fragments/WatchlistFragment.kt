@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_project.R
 import com.example.android_project.adapters.WatchlistAdapter
+import com.example.android_project.data.WatchlistRepo
 import com.example.android_project.models.WatchlistAPIRequest
 import com.example.android_project.models.WatchlistItemModel
 import com.google.firebase.auth.FirebaseAuth
@@ -79,6 +80,7 @@ class WatchlistFragment: Fragment() {
 
     private fun updateRecyclerView(watchlist: List<WatchlistItemModel>) {
         watchlist.forEach { watchlistItem ->
+            insertWatchlistItemToDB(watchlistItem)
             watchlistItems.add(watchlistItem)
         }
         adapter.notifyItemRangeInserted(0, watchlistItems.size)
@@ -87,5 +89,11 @@ class WatchlistFragment: Fragment() {
     private fun goToMovies() {
         val action = WatchlistFragmentDirections.actionWatchlistFragmentToMoviesFragment()
         findNavController().navigate(action)
+    }
+
+    private fun insertWatchlistItemToDB(watchlistItem: WatchlistItemModel) {
+        WatchlistRepo.insert(watchlistItem) {
+            println("Product successfully inserted")
+        }
     }
 }
