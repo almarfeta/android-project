@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/green">
+    android:background="@color/black">
 
     <TextView
         android:id="@+id/tv_watchlist_title"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="@string/watchlist_header"
         android:textSize="24sp"
-        android:textColor="@color/white"
+        android:textColor="@color/yellow"
         android:layout_marginTop="@dimen/default_space"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

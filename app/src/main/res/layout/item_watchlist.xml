@@ -12,21 +12,21 @@
         android:id="@+id/tv_watchlist_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/blue"
+        android:textColor="@color/black"
         tools:text="Movie Name"/>
 
     <TextView
         android:id="@+id/tv_watchlist_year"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         tools:text="Year"/>
 
     <TextView
         android:id="@+id/tv_watchlist_actors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         tools:text="Actors"/>
 
 </LinearLayout>
