@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/yellow"
+    android:padding="@dimen/default_space"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="@dimen/default_space"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_watchlist_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        tools:text="Movie Name"/>
+
+    <TextView
+        android:id="@+id/tv_watchlist_year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        tools:text="Year"/>
+
+    <TextView
+        android:id="@+id/tv_watchlist_actors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        tools:text="Actors"/>
+
+</LinearLayout>
