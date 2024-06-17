@@ -72,6 +72,8 @@ class MoviesFragment : Fragment(), MovieAdapter.OnAddToWatchlistClickListener {
             }
         }
 
+        movieList.clear()
+        adapter.notifyDataSetChanged()
         getMovies(search)
     }
 
