@@ -1,5 +1,7 @@
 package com.example.android_project.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment: Fragment() {
     private lateinit var auth: FirebaseAuth
+    private lateinit var sharedPreferences: SharedPreferences
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,6 +38,21 @@ class LoginFragment: Fragment() {
 
         val goToRegisterButton = view.findViewById<Button>(R.id.goto_register_btn)
         goToRegisterButton.setOnClickListener { goToRegister() }
+
+        sharedPreferences = requireContext().getSharedPreferences("user_prefs",
+            Context.MODE_PRIVATE)
+        prefillLoginForm()
+    }
+
+    private fun prefillLoginForm() {
+        val emailEditText = view?.findViewById<EditText>(R.id.et_login_email)
+        val passwordEditText = view?.findViewById<EditText>(R.id.et_login_password)
+
+        val savedEmail = sharedPreferences.getString("email", "")
+        val savedPassword = sharedPreferences.getString("password", "")
+
+        emailEditText?.setText(savedEmail)
+        passwordEditText?.setText(savedPassword)
     }
 
     private fun doLogin() {
@@ -59,6 +77,7 @@ class LoginFragment: Fragment() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    saveCredentials(email, password)
                     getString(R.string.login_successful).showToast(context)
                     goToHome()
                 } else {
@@ -75,5 +94,12 @@ class LoginFragment: Fragment() {
     private fun goToHome() {
         val action = LoginFragmentDirections.actionLoginFragmentToWatchlistFragment()
         findNavController().navigate(action)
+    }
+
+    private fun saveCredentials(email: String, password: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString("email", email)
+        editor.putString("password", password)
+        editor.apply()
     }
 }
