@@ -1,6 +1,5 @@
 package com.example.android_project.fragments
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +9,8 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
 import com.example.android_project.R
 import com.example.android_project.utils.extenstions.showToast
 import com.google.firebase.auth.FirebaseAuth
@@ -39,8 +40,14 @@ class LoginFragment: Fragment() {
         val goToRegisterButton = view.findViewById<Button>(R.id.goto_register_btn)
         goToRegisterButton.setOnClickListener { goToRegister() }
 
-        sharedPreferences = requireContext().getSharedPreferences("user_prefs",
-            Context.MODE_PRIVATE)
+        val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+        sharedPreferences = EncryptedSharedPreferences.create(
+            "user_prefs",
+            masterKeyAlias,
+            requireContext(),
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
         prefillLoginForm()
     }
 
