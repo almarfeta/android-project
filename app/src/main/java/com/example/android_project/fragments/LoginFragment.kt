@@ -25,6 +25,11 @@ class LoginFragment: Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            goToHome()
+        }
+
         val loginButton = view.findViewById<Button>(R.id.login_btn)
         loginButton.setOnClickListener { doLogin() }
 

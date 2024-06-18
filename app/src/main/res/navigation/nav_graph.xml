@@ -38,5 +38,8 @@
         <action
             android:id="@+id/action_watchlistFragment_to_moviesFragment"
             app:destination="@id/moviesFragment" />
+        <action
+            android:id="@+id/action_watchlistFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>

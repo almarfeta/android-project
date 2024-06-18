@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,6 +45,9 @@ class WatchlistFragment: Fragment() {
         headerTextView = view.findViewById(R.id.tv_watchlist_title)
         val goToMoviesButton = view.findViewById<Button>(R.id.add_movies_btn)
         goToMoviesButton.setOnClickListener { goToMovies() }
+
+        val logoutButton = view.findViewById<Button>(R.id.logout_btn)
+        logoutButton.setOnClickListener { logout() }
 
         setupRecyclerView()
         getData()
@@ -87,9 +91,7 @@ class WatchlistFragment: Fragment() {
     }
 
     private fun goToMovies() {
-        watchlistItems.clear()
-        adapter.notifyDataSetChanged()
-
+        clearRV()
         val action = WatchlistFragmentDirections.actionWatchlistFragmentToMoviesFragment()
         findNavController().navigate(action)
     }
@@ -98,5 +100,18 @@ class WatchlistFragment: Fragment() {
         WatchlistRepo.insert(watchlistItem) {
             println("Product successfully inserted")
         }
+    }
+
+    private fun clearRV() {
+        watchlistItems.clear()
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun logout() {
+        auth.signOut()
+        val action = WatchlistFragmentDirections.actionWatchlistFragmentToLoginFragment()
+        findNavController().navigate(action, NavOptions.Builder()
+            .setPopUpTo(R.id.watchlistFragment, true)
+            .build())
     }
 }

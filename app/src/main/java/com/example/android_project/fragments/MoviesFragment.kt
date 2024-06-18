@@ -72,8 +72,7 @@ class MoviesFragment : Fragment(), MovieAdapter.OnAddToWatchlistClickListener {
             }
         }
 
-        movieList.clear()
-        adapter.notifyDataSetChanged()
+        clearRV()
         getMovies(search)
     }
 
@@ -130,10 +129,13 @@ class MoviesFragment : Fragment(), MovieAdapter.OnAddToWatchlistClickListener {
     }
 
     private fun goToWatchlist() {
-        movieList.clear()
-        adapter.notifyDataSetChanged()
-
+        clearRV()
         val action = MoviesFragmentDirections.actionMoviesFragmentToWatchlistFragment()
         findNavController().navigate(action)
+    }
+
+    private fun clearRV() {
+        movieList.clear()
+        adapter.notifyDataSetChanged()
     }
 }
