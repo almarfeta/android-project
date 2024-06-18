@@ -100,8 +100,8 @@ class MoviesFragment : Fragment(), MovieAdapter.OnAddToWatchlistClickListener {
         for (element in descriptionArray) {
             val item = element.asJsonObject
             val name = item.get("#TITLE").asString
-            val year = item.get("#YEAR").asString
-            val actors = item.get("#ACTORS").asString
+            val year = item.get("#YEAR")?.asString ?: "N/A"
+            val actors = item.get("#ACTORS")?.asString ?: "N/A"
             val movie = MovieModel(name, year, actors)
             movieList.add(movie)
         }
