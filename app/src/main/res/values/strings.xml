@@ -25,4 +25,5 @@
     <string name="movie_added">Movie added</string>
     <string name="movie_added_fail">Failed to add movie</string>
     <string name="logout">Logout</string>
+    <string name="view_watchlist">View Watchlist</string>
 </resources>
