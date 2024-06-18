@@ -7,4 +7,9 @@
     <color name="blue">#3498db</color>
     <color name="green">#82b366</color>
     <color name="purple">#9999cc</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="startColor">#FF5722</color>
+    <color name="endColor">#FF9800</color>
 </resources>
