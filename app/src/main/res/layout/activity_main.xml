@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow"
+    android:background="@drawable/gradient_background"
     tools:context=".MainActivity">
 
     <ImageView
@@ -42,6 +42,53 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/sign_in_button" />
+        android:text="@string/sign_in_button"
+        android:background="@drawable/button_selector"
+        android:textColor="@color/color_selector"/>
+
+    <!-- Define the drawables, selectors, and gradient within this resources block -->
+    <resources>
+        <!-- Normal state shape -->
+        <drawable name="button_shape_normal">
+            <shape android:shape="rectangle">
+                <corners android:radius="16dp" />
+                <solid android:color="@color/colorPrimary" />
+            </shape>
+        </drawable>
+
+        <!-- Pressed state shape -->
+        <drawable name="button_shape_pressed">
+            <shape android:shape="rectangle">
+                <corners android:radius="16dp" />
+                <solid android:color="@color/colorPrimaryDark" />
+            </shape>
+        </drawable>
+
+        <!-- Drawable selector -->
+        <drawable name="button_selector">
+            <selector xmlns:android="http://schemas.android.com/apk/res/android">
+                <item android:drawable="@drawable/button_shape_pressed" android:state_pressed="true"/>
+                <item android:drawable="@drawable/button_shape_normal"/>
+            </selector>
+        </drawable>
+
+        <!-- Color selector -->
+        <color name="color_selector">
+            <selector xmlns:android="http://schemas.android.com/apk/res/android">
+                <item android:color="@color/colorAccent" android:state_pressed="true"/>
+                <item android:color="@color/white"/>
+            </selector>
+        </color>
+
+        <!-- Gradient drawable for the background -->
+        <drawable name="gradient_background">
+            <shape android:shape="rectangle">
+                <gradient
+                    android:startColor="@color/startColor"
+                    android:endColor="@color/endColor"
+                    android:angle="45"/>
+            </shape>
+        </drawable>
+    </resources>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
